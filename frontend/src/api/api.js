@@ -1,4 +1,6 @@
-const apiUrl = "http://localhost:5000/";
+// const apiUrl = "http://localhost:5000/";
+const apiUrl = "https://medical-shoppee-backend.onrender.com/";
+
 
 export const getAllProducts = async () => {
   const res = await fetch(`${apiUrl}api/products`);
