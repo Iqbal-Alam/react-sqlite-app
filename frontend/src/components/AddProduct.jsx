@@ -30,14 +30,14 @@ const AddProduct = () => {
   });
 
   const mutation = useMutation({
-    mutationKey: ['add-product'],
+    mutationKey: ["add-product"],
     mutationFn: addProduct,
-    onSuccess: (data)=>{
-        console.log('success', data);
+    onSuccess: (data) => {
+      console.log("success", data);
     },
-    onError: (err)=>{
-        console.log(err.message);
-    }
+    onError: (err) => {
+      console.log(err.message);
+    },
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -54,56 +54,6 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     mutation.mutate(formData);
-    // setIsSubmitting(true);
-
-    // try {
-    //   const response = await fetch("http://your-api-endpoint/add-product", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(formData),
-    //   });
-
-    //   const data = await response.json();
-
-    //   if (response.ok) {
-    //     toast.current.show({
-    //       severity: "success",
-    //       summary: "Success",
-    //       detail: "Product added successfully!",
-    //       life: 3000,
-    //     });
-    //     setFormData({
-    //       agency_details: "",
-    //       invoice_no: "",
-    //       invoice_date: "",
-    //       medicine_name: "",
-    //       hsn: "",
-    //       pack: "",
-    //       mfg: "",
-    //       exp: "",
-    //       batch: "",
-    //       qty: null,
-    //       free: null,
-    //       scheme: "",
-    //       mrp: null,
-    //       rate: null,
-    //       gst: null,
-    //     });
-    //   } else {
-    //     throw new Error(data.error || "Failed to add product");
-    //   }
-    // } catch (error) {
-    //   toast.current.show({
-    //     severity: "error",
-    //     summary: "Error",
-    //     detail: error.message,
-    //     life: 3000,
-    //   });
-    // } finally {
-    //   setIsSubmitting(false);
-    // }
   };
   const total = formData.qty * formData.rate;
   const gstAmount = (total * formData.gst) / 100;
@@ -193,12 +143,13 @@ const AddProduct = () => {
 
           <div className="flex flex-col">
             <label htmlFor="exp">EXP</label>
-            <InputText
+            <Calendar
               id="exp"
               name="exp"
               value={formData.exp}
               onChange={handleChange}
               required
+              dateFormat="yy-mm-dd"
             />
           </div>
 
@@ -310,7 +261,7 @@ const AddProduct = () => {
               required
             />
           </div>
-          
+
           <div className="col-span-2 ">
             <Button
               label={isSubmitting ? "Submitting..." : "Submit"}
