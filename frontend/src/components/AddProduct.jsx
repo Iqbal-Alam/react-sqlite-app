@@ -8,8 +8,9 @@ import "./AddProduct.css"; // Add custom styles for the two-column form
 import { Calendar } from "primereact/calendar";
 import { useMutation } from "@tanstack/react-query";
 import { addProduct } from "../api/api";
+import TopMenuBar from "./TopMenuBar";
 
-const AddProduct = () => {
+const AddProduct = ({toast}) => {
   // Form state
   const [formData, setFormData] = useState({
     agency_details: "",
@@ -33,6 +34,12 @@ const AddProduct = () => {
     mutationKey: ["add-product"],
     mutationFn: addProduct,
     onSuccess: (data) => {
+        toast.current?.show({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Product Added successfully',
+            life: 5000
+        });
       console.log("success", data);
     },
     onError: (err) => {
@@ -41,7 +48,6 @@ const AddProduct = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const toast = React.useRef(null);
   //   const total = formData.qty * formData.rate;
 
   // Handle input changes
@@ -58,9 +64,9 @@ const AddProduct = () => {
   const total = formData.qty * formData.rate;
   const gstAmount = (total * formData.gst) / 100;
   return (
+    <>
+        <TopMenuBar></TopMenuBar>
     <div className="add-product-container">
-      <Toast ref={toast} />
-
       <Card title="Add New Medicine">
         <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
           <div className="flex flex-col">
@@ -273,6 +279,7 @@ const AddProduct = () => {
         </form>
       </Card>
     </div>
+    </>
   );
 };
 

@@ -10,8 +10,9 @@ import DeleteForm from "./DeleteForm";
 import UpdateForm from "./UpdateForm";
 import DynamicModal from "./DynamicModal";
 import SellForm from "./SellForm";
+import TopMenuBar from "./TopMenuBar";
 
-const Dashboard = () => {
+const Dashboard = ({toast}) => {
   const queryClient = useQueryClient();
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["products"],
@@ -81,6 +82,12 @@ const Dashboard = () => {
       case "sell":
         sellMutation.mutate(formData, {
           onSuccess: () => {
+            toast.current?.show({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Product Sell successfully',
+                life: 3000
+            });
             closeModal();
           },
           onError: (err) => console.error("Sell failed", err),
@@ -91,9 +98,24 @@ const Dashboard = () => {
         console.log('update', formData);
         updateMutation.mutate(formData, {
           onSuccess: () => {
+            toast.current?.show({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Product updated successfully',
+                life: 3000
+            });
             closeModal();
           },
-          onError: (err) => console.error("Update failed", err),
+          onError: (err) =>{
+              console.error("Update failed", err);
+              toast.current?.show({
+                severity: 'danger',
+                summary: 'Error',
+                detail: err.message,
+                life: 3000
+            });
+
+          } 
         });
         break;
 
@@ -114,6 +136,7 @@ const Dashboard = () => {
 
   return (
     <div>
+        <TopMenuBar></TopMenuBar>
       <DataTable value={data} tableStyle={{ minWidth: "50rem" }}>
         <Column field="id" header="ID" />
         <Column field="agency_details" header="Agency Details" />
