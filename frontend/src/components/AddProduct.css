@@ -1,0 +1,15 @@
+/* AddProduct.css */
+.add-product-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.p-field {
+  margin-bottom: 1rem;
+}
+
+.p-button {
+  margin-top: 1rem;
+}
