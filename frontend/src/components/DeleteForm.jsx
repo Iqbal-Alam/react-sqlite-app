@@ -9,7 +9,7 @@ const DeleteForm = forwardRef(({ data }, ref) => {
   }));
 
   return (
-    <div className="p-4">
+    <div className="p-4 m-4">
       <Message
         severity="warn"
         text={`Are you sure you want to delete "${data?.medicine_name}" (Invoice: ${data?.invoice_no})?`}

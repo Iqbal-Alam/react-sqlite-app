@@ -2,6 +2,7 @@
 frontend/node_modules/
 backend/node_modules/
 backend/.env
+backend/ecommerce.db
 
 # Optional: ignore build artifacts or logs
 frontend/dist/

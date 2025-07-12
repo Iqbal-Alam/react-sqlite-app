@@ -167,7 +167,7 @@ const Dashboard = ({toast}) => {
           body={(rowData) => (
             <Badge
               value={calculateTotal(rowData).toFixed(2)}
-              severity="secondary"
+              severity="warning"
             />
           )}
         />
@@ -176,7 +176,7 @@ const Dashboard = ({toast}) => {
           body={(rowData) => (
             <Badge
               value={calculateGstAmount(rowData).toFixed(2)}
-              severity="secondary"
+              severity="warning"
             />
           )}
         />
@@ -186,7 +186,7 @@ const Dashboard = ({toast}) => {
             <div className="flex gap-2">
               <Button
                 label="Sell"
-                severity="success"
+                severity="help"
                 onClick={() =>
                   openModal("Sell Item", SellForm, rowData, "sell")
                 }

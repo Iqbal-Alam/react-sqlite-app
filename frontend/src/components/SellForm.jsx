@@ -30,7 +30,7 @@ const SellForm = forwardRef(({ data }, ref) => {
     },
   }));
   return (
-    <div>
+    <div className="m-4">
       <Card title="Sell Medicine" className="md:w-25rem">
         <form className="grid grid-cols-2 gap-4">
           <div className="flex flex-col">

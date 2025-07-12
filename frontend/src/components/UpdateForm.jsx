@@ -83,7 +83,7 @@ const UpdateForm = forwardRef(({ data = {} }, ref) => {
   );
 
   return (
-    <div className="grid grid-cols-2 gap-3">
+    <div className="grid grid-cols-2 gap-3 m-4">
       <div className="">{renderInput("Agency Details", "agency_details")}</div>
       <div className="">{renderInput("Invoice No", "invoice_no")}</div>
       <div className="">{renderInput("Medicine Name", "medicine_name")}</div>
